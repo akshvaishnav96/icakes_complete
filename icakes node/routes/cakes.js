@@ -7,7 +7,7 @@ import { deleteFlavor, editFlavor, showFlavor, updateFlavor, uplodeFlavor } from
 import { upload } from "../middleware/multer.js";
 import { deleteFlavorWithPrice, editFlavorWithPrice, showFlavorWithPrice, updateFlavorWithPrice, uplodeFlavorWithPrice } from "../controllers/cakeFlavorWithPrice.js";
 import { deleteCakeSizeWithPrice, editCakeSizeWithPrice, showCakeSizeWithPrice, updateCakeSizeWithPrice, uplodeCakeSizeWithPrice } from "../controllers/cakeSizeWIthPriceTier.js";
-import { deletecake, editcake, showcake, updatecake, uplodecake } from "../controllers/cakes.js";
+import { deletecake, editcake, getDistinctValues, showcake, updatecake, uplodecake } from "../controllers/cakes.js";
 
 const cakeRouter = Router();
 
@@ -70,7 +70,10 @@ cakeRouter.route("/cakeSizewithprice/delete/:id").delete(deleteCakeSizeWithPrice
 
 
 cakeRouter.route("/cake").get(showcake);
-cakeRouter.route("/cake").post(upload.array('images', 5),uplodecake);
+cakeRouter.route("/cake").post(upload.array('images', 5), uplodecake);
+cakeRouter.route("/cake/get_distinct_field_value").get(getDistinctValues);
+
+
 cakeRouter.route("/cake/edit/:id").get(updatecake);
 cakeRouter.route("/cake/edit/:id").patch(editcake);
 cakeRouter.route("/cake/delete/:id").delete(deletecake);

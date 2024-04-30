@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 import { Cake } from "../modules/cakeuplode.js";
 import fs from "fs"
+import { Category } from '../modules/mainCategory.js';
+import { SubCategory } from '../modules/SubCategory.js';
+import { CakeFlavor } from '../modules/cakeFlavor.js';
+import { CakeSize } from '../modules/cakeSize.js';
+import { CakeTier } from '../modules/cakeTier.js';
 
 const showcake = async (req, res) => {
 
@@ -8,7 +13,21 @@ const showcake = async (req, res) => {
 
 
 
+    let { fieldName, sorttype } = req.query;
+    let sortData = {
+        name: 1
+    };
+
+    fieldName && sorttype ? (sortData[fieldName] = Number(sorttype)) : "";
+
+
+
+
+
+
+
     try {
+
         const queryData = [
             {
                 $lookup: {
@@ -136,7 +155,12 @@ const showcake = async (req, res) => {
 
                     ]
                 }
+            }, {
+                $sort: sortData
+
+
             },
+
 
             {
                 $project: {
@@ -170,11 +194,12 @@ const showcake = async (req, res) => {
             })
         }
 
+
+
         const data = await Cake.aggregate(
             queryData
         )
 
-        console.log(data);
 
         res.status(200).json(data)
 
@@ -246,4 +271,27 @@ const deletecake = async (req, res) => {
 }
 
 
-export { showcake, uplodecake, updatecake, editcake, deletecake }
+const getDistinctValues = async (req, res) => {
+
+
+    try {
+
+        const categorys = await SubCategory.find({}).select("_id subcategory");
+        const flavor = await CakeFlavor.find({}).select("_id cakeFlavor");
+        const size = await CakeSize.find({}).select("_id cakesize");
+        const tier = await CakeTier.find({}).select("_id tier");
+
+        res.status(200).json({ categories: categorys, flavors: flavor, sizes: size, tiers: tier });
+
+
+    } catch (error) {
+        res.status(400).json(error, { msg: "something went wrong when dateching disting filter values" })
+    }
+
+
+}
+
+
+
+
+export { showcake, uplodecake, updatecake, editcake, deletecake, getDistinctValues }
