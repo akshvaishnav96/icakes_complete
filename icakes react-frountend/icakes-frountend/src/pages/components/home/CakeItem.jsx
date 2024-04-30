@@ -19,8 +19,6 @@ export default function CakeItem({
   const ProductQuickV = useSelector((state) => state.productQuickView);
 
   const imagesArr = images.map((e) => {
-    // const crop1 = e.substr(e.indexOf("/") + 1);
-    // const crop2 = crop1.substr(crop1.indexOf("/"));
     const backend_Url = "http://localhost:3000/";
     const crop1 = backend_Url + e.substr(7);
     return crop1;
@@ -32,39 +30,39 @@ export default function CakeItem({
 
   return (
     <>
-      <Link to={"/quickView/" + productId}>
-        {" "}
-        <div
-          key={productId}
-          // onClick={productQuickViewDisplayhandler}
-          class="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm cursor-pointer"
-          style={{ minHeight: "32rem" }}
-        >
-          <div class="relative">
-            <Carousel
-              loop={true}
-              autoplay={true}
-              transition={{ duration: 1 }}
-              autoplayDelay={5000}
-              className=""
-            >
-              {imagesArr.map((image) => (
-                <img
-                  src={image}
-                  alt="image 1"
-                  className="h-full w-full object-cover"
-                  style={{ minHeight: "20rem", maxHeight: "20rem" }}
-                />
-              ))}
-            </Carousel>
-            {discount ? (
-              <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">
-                SALE
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+      {" "}
+      <div
+        key={productId}
+        // onClick={productQuickViewDisplayhandler}
+        class="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm "
+        style={{ minHeight: "32rem" }}
+      >
+        <div class="relative">
+          <Carousel
+            loop={true}
+            autoplay={true}
+            transition={{ duration: 1 }}
+            autoplayDelay={5000}
+            className=""
+          >
+            {imagesArr.map((image) => (
+              <img
+                src={image}
+                alt="image 1"
+                className="h-full w-full object-cover"
+                style={{ minHeight: "20rem", maxHeight: "20rem" }}
+              />
+            ))}
+          </Carousel>
+          {discount ? (
+            <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">
+              SALE
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        <Link to={"/quickView/" + productId}>
           <div class="p-4">
             <h3 class="text-lg font-medium mb-2">{cakename}</h3>
             <p class="text-gray-600 text-sm mb-4"></p>
@@ -87,8 +85,8 @@ export default function CakeItem({
               Buy Now
             </button>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 }

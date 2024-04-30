@@ -115,10 +115,22 @@ export default function ProductQuickView({ productId, cakename }) {
                         </h3>
 
                         <p class="text-2xl text-green-500">
-                          <span className="text-2xl font-bold text-gray-500">
+                          <span className="text-2xl font-bold text-green-500">
                             Start From
                           </span>
-                          : ${cake.size[0].price}
+                          :
+                          {cake.discount ? (
+                            <>
+                              <span className="text-green-500 text-3xl">
+                                ${cake.size[0].price - cake.discount}
+                              </span>
+                              <span className="text-red-500 mx-2 text-xl line-through">
+                                ${cake.discount}
+                              </span>
+                            </>
+                          ) : (
+                            cake.size[0].price
+                          )}
                         </p>
                         <h3>Available Flavors: {cake.flavor.length}</h3>
 
@@ -204,7 +216,9 @@ export default function ProductQuickView({ productId, cakename }) {
                         <form>
                           <div>
                             <h4 class="text-sm font-medium text-gray-900">
-                              Flavor
+                              <span className="text-purple-500">
+                                Flavor's :
+                              </span>
                             </h4>
 
                             <fieldset class="mt-4">
@@ -212,7 +226,7 @@ export default function ProductQuickView({ productId, cakename }) {
                               <div class="grid grid-cols-3 gap-4">
                                 {cake.flavor.map((flavor) => (
                                   <>
-                                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 cursor-pointer bg-white text-gray-900 shadow-sm">
+                                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-purple-500 hover:text-white focus:outline-none sm:flex-1 cursor-pointer bg-white text-gray-900 shadow-sm">
                                       <input
                                         type="radio"
                                         name="size-choice"

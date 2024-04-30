@@ -1,28 +1,29 @@
 import React from "react";
 import "../../css/loader.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-export default function LoaderComp() {
+export default function LoaderComp({ height, width, repeat }) {
+  const repeatData = Array(repeat).fill(0);
+
   return (
-    <div class="flex-col gap-4 w-full flex items-center justify-center">
-      <div class="w-28 h-28 border-8 text-blue-400 text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-blue-400 rounded-full">
-        {/* <svg
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          height="1em"
-          width="1em"
-          class="animate-ping"
+    <>
+      {repeatData.map(() => (
+        <div
+          // onClick={productQuickViewDisplayhandler}
+          class="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40 max-w-sm cursor-pointer"
+          style={{ minHeight: "32rem" }}
         >
-          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"></path>
-        </svg> */}
-        <img
-          src="./output-onlinegiftools.gif"
-          alt=""
-          srcset=""
-          height="100emem"
-          width="100em"
-          class="animate-ping"
-        />
-      </div>
-    </div>
+          <SkeletonTheme baseColor="gray" highlightColor="#444">
+            <div class="relative">
+              <Skeleton count={1} height={"28rem"} />
+            </div>
+            <div>
+              <Skeleton count={3} height={30} />
+            </div>
+          </SkeletonTheme>
+        </div>
+      ))}
+    </>
   );
 }

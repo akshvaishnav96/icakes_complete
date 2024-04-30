@@ -12,6 +12,7 @@ export default function Home() {
   const [cakeCategory, setCakeCategory] = useState([]);
   const [allCategory, setAllCategory] = useState([]);
   const [cakes, setCakes] = useState([]);
+
   // Define your slides in an array
   const slides = [
     {
@@ -299,15 +300,6 @@ export default function Home() {
 
           <CakeDiv cakes={cakes} />
           <div class="grid grid-cols-1 gap-6   lg:grid-cols-4 ">
-            <Location />
-            <Location />
-            <Location />
-            <Location />
-            <Location />
-            <Location />
-            <Location />
-            <Location />
-            <Location />
             <Location />
           </div>
         </div>

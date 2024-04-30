@@ -27,7 +27,7 @@ export default function App() {
         <Route path="/quickView/:id" element={<ProductQuickView />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/cakes/:subcategory_name" element={<CakePage />} />
+        <Route path="/cakes/:subcategory_name?" element={<CakePage />} />
         <Route path="/quality" element={<Quality />} />
         <Route path="/flavours" element={<Flavours />} />
         <Route path="/city" element={<City />} />

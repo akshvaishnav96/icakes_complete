@@ -201,7 +201,17 @@ export default function Header() {
               About Us
             </NavLink>
           </li>
-          <li class="max-lg:border-b max-lg:py-2 px-3">Cake ↓ </li>
+          <NavLink
+            to="/cakes"
+            className={({ isActive }) =>
+              isActive
+                ? "text-purple-900 font-bold italic "
+                : "text-white text-[15px] font-medium block"
+            }
+          >
+            {" "}
+            <li class="max-lg:border-b max-lg:py-2 px-3">Cake ↓ </li>
+          </NavLink>
           <li class="max-lg:border-b max-lg:py-2 px-3">Desserts ↓</li>
           <li class="max-lg:border-b max-lg:py-2 px-3">
             <NavLink
